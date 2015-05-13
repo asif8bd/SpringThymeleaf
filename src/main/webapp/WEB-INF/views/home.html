@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Spring Thymeleaf Task | Ashid</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../resources/css/bootstrap.min.css"
+	th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../resources/css/style.css"
+	th:href="@{/resources/css/style.css}" />
+<script src="../../resources/js/script.js"
+	th:src="@{/resources/js/script.js}"></script>
+</head>
+
+<body>
+	<h3 class="container">
+		Spring Thymeleaf Assignment : <span
+			th:text="${#dates.format(new java.util.Date().getTime(), 'dd MMM, yyyy HH:mm')}">22-Jun-2013</span>
+	</h3>
+	<br />
+	<br />
+	<div class="container">
+
+		<form class="form-inline" action="#" th:action="@{/student.html}"
+			th:object="${student}" method="post">
+			<div class="form-group">
+				<label for="studentId"> Student Id</label> <input
+					class="form-control" type="text" th:field="*{studentId}" />
+			</div>
+			<div class="form-group">
+				<label for="studentName"> Student Name</label> <input
+					class="form-control" type="text" th:field="*{studentName}" />
+			</div>
+			<div class="form-group">
+				<label for="studentEmail">Student Email</label> <input
+					class="form-control" type="text" th:field="*{studentEmail}" />
+			</div>
+
+			<button class="btn btn-success" type="submit" name="save">Save</button>
+			<br />
+			<br />
+			<div th:unless="${#lists.isEmpty(allStudents)}">
+
+				<table class="table table-striped">
+					<tr>
+						<th>#</th>
+						<th>Student Name</th>
+						<th>Student Email</th>
+						<th>Update Info</th>
+						<th>Delete Info</th>
+					</tr>
+					<tr th:each="sd , rowStat : ${allStudents}">
+						<td th:text="${{sd.studentId}}">101</td>
+						<td th:text="${{sd.studentName}}">Jhon</td>
+						<td th:text="${{sd.studentEmail}}">Jhon@bbc.uk</td>
+						<td>
+							<button class="btn btn-success" type="submit" name="editRow"
+								th:value="${rowStat.index}">Edit</button>
+						</td>
+						<td>
+							<button class="btn btn-danger" type="submit" name="removeRow"
+								th:value="${rowStat.index}">Remove</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+		</form>
+	</div>
+
+</body>
+</html>

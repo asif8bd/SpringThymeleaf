@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Spring Thyme Leaf Task | Ashid</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../resources/css/bootstrap.min.css"
+	th:href="@{/resources/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="all"
+	href="../../resources/css/style.css"
+	th:href="@{/resources/css/style.css}" />
+<script src="../../resources/js/script.js"
+	th:src="@{/resources/js/script.js}"></script>
+</head>
+
+<body>
+	<h3 class="container">
+		Update Student Info -
+	</h3>
+	<br/>
+	<div class="container">
+
+		<form class="form-inline" action="#" th:action="@{/student.html}"
+			th:object="${student}" method="post">
+			<div class="form-group">
+				<label for="studentId">Id</label> <input
+					class="form-control" type="text" th:field="*{studentId}" readonly="readonly"/>
+			</div>
+			<div class="form-group">
+				<label for="studentName"> Student Name</label> <input
+					class="form-control" type="text" th:field="*{studentName}"/>
+			</div>
+			<div class="form-group">
+				<label for="studentEmail">Student Email</label> <input
+					class="form-control" type="text" th:field="*{studentEmail}"/>
+			</div>
+			
+				<button class="btn btn-success" type="submit" name="update"  th:value="${token}" >Update</button>
+			
+			
+		</form>
+	</div>
+
+</body>
+</html>
